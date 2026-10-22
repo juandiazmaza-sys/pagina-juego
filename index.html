@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Learner-Pro | Math Battle - Instituto Técnico Industrial Laureano Gómez Castro</title>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&family=Outfit:wght@400;600;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-dark: #0c101d;
+      --card-bg: #151c2e;
+      --accent-yellow: #FFB800;
+      --accent-orange: #FFA500;
+      --accent-cyan: #00F2FE;
+      --accent-pink: #FF0844;
+      --text-light: #F3F4F6;
+      --text-muted: #9CA3AF;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Outfit', sans-serif;
+    }
+
+    body {
+      background-color: var(--bg-dark);
+      color: var(--text-light);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    /* Header Learner-Pro */
+    header {
+      width: 100%;
+      background-color: rgba(21, 28, 46, 0.9);
+      backdrop-filter: blur(10px);
+      border-bottom: 2px solid rgba(255, 184, 0, 0.2);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo-container {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .logo-badge {
+      background: linear-gradient(135deg, var(--accent-yellow), var(--accent-orange));
+      color: #000;
+      font-family: 'Fredoka', sans-serif;
+      font-weight: 700;
+      font-size: 1.2rem;
+      padding: 0.3rem 0.8rem;
+      border-radius: 12px;
+    }
+
+    .logo-text {
+      font-family: 'Fredoka', sans-serif;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #fff;
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+    }
+
+    nav a {
+      color: var(--accent-yellow);
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 1.1rem;
+      border-bottom: 3px solid var(--accent-yellow);
+      padding-bottom: 4px;
+    }
+
+    /* Hero & Información Institucional */
+    .container {
+      width: 100%;
+      max-width: 1100px;
+      padding: 2rem 1.5rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2.5rem;
+    }
+
+    .hero-card {
+      background: var(--card-bg);
+      border: 2px solid rgba(255, 255, 255, 0.08);
+      border-radius: 24px;
+      padding: 2.5rem;
+      width: 100%;
+      text-align: center;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    }
+
+    .badge-pymes {
+      background: rgba(0, 242, 254, 0.15);
+      color: var(--accent-cyan);
+      border: 1px solid var(--accent-cyan);
+      display: inline-block;
+      padding: 0.4rem 1.2rem;
+      border-radius: 20px;
+      font-weight: 700;
+      font-size: 0.9rem;
+      margin-bottom: 1rem;
+    }
+
+    h1 {
+      font-family: 'Fredoka', sans-serif;
+      font-size: 2.5rem;
+      color: #fff;
+      margin-bottom: 0.75rem;
+    }
+
+    h1 span {
+      color: var(--accent-yellow);
+    }
+
+    .sub-institution {
+      font-size: 1.2rem;
+      color: var(--accent-cyan);
+      margin-bottom: 1rem;
+      font-weight: 600;
+    }
+
+    .authors-box {
+      background: rgba(0, 0, 0, 0.25);
+      border-radius: 12px;
+      padding: 0.8rem 1.5rem;
+      display: inline-flex;
+      gap: 1.5rem;
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .authors-box strong {
+      color: #fff;
+    }
+
+    /* Sección QR con imagen local */
+    .qr-section {
+      background: linear-gradient(145deg, #182238, #101625);
+      border: 2px dashed var(--accent-yellow);
+      border-radius: 24px;
+      padding: 2rem;
+      width: 100%;
+      max-width: 500px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1.2rem;
+      box-shadow: 0 8px 25px rgba(255, 184, 0, 0.15);
+    }
+
+    .qr-title {
+      font-family: 'Fredoka', sans-serif;
+      font-size: 1.4rem;
+      color: var(--accent-yellow);
+      text-align: center;
+    }
+
+    .qr-img-wrapper {
+      background: #ffffff;
+      padding: 16px;
+      border-radius: 16px;
+      position: relative;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.4);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .qr-img-wrapper img {
+      width: 210px;
+      height: 210px;
+      display: block;
+      object-fit: contain;
+    }
+
+    .scan-line {
+      position: absolute;
+      top: 16px;
+      left: 16px;
+      width: calc(100% - 32px);
+      height: 4px;
+      background: linear-gradient(90deg, transparent, var(--accent-pink), transparent);
+      box-shadow: 0 0 10px var(--accent-pink);
+      animation: scan 2.5s ease-in-out infinite alternate;
+    }
+
+    @keyframes scan {
+      0% { top: 16px; }
+      100% { top: calc(100% - 20px); }
+    }
+
+    .btn-scan {
+      background: linear-gradient(135deg, var(--accent-yellow), var(--accent-orange));
+      color: #000;
+      border: none;
+      font-family: 'Fredoka', sans-serif;
+      font-size: 1.2rem;
+      padding: 0.8rem 2rem;
+      border-radius: 16px;
+      cursor: pointer;
+      font-weight: 700;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .btn-scan:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(255, 184, 0, 0.4);
+    }
+
+    /* Sección del Juego Math Battle */
+    .game-section {
+      width: 100%;
+      background: var(--card-bg);
+      border-radius: 24px;
+      padding: 2rem;
+      display: none; /* Se muestra al presionar el botón de escanear */
+      flex-direction: column;
+      align-items: center;
+      border: 2px solid var(--accent-yellow);
+    }
+
+    .game-section.active {
+      display: flex;
+    }
+
+    .split-screen {
+      width: 100%;
+      max-width: 600px;
+      background: #090d18;
+      border-radius: 20px;
+      overflow: hidden;
+      border: 2px solid rgba(255,255,255,0.1);
+    }
+
+    .player-area {
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .player-2 {
+      transform: rotate(180deg);
+      background: rgba(0, 242, 254, 0.05);
+      border-bottom: 2px dashed rgba(255,255,255,0.2);
+    }
+
+    .player-1 {
+      background: rgba(255, 8, 68, 0.05);
+    }
+
+    .player-header {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(255,255,255,0.05);
+      padding: 0.5rem 1rem;
+      border-radius: 12px;
+    }
+
+    .math-expression {
+      font-family: 'Fredoka', sans-serif;
+      font-size: 2.2rem;
+      color: #fff;
+      text-shadow: 0 0 10px rgba(255,255,255,0.5);
+    }
+
+    .answers-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.8rem;
+      width: 100%;
+    }
+
+    .btn-ans {
+      background: rgba(255, 255, 255, 0.08);
+      border: 2px solid rgba(255, 255, 255, 0.15);
+      color: #fff;
+      font-family: 'Fredoka', sans-serif;
+      font-size: 1.5rem;
+      padding: 0.8rem;
+      border-radius: 14px;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.1s;
+    }
+
+    .btn-ans:hover {
+      background: rgba(255, 184, 0, 0.2);
+      border-color: var(--accent-yellow);
+    }
+
+    footer {
+      margin-top: auto;
+      width: 100%;
+      padding: 1.5rem;
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      border-top: 1px solid rgba(255,255,255,0.05);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header Learner-Pro (Solo Home) -->
+  <header>
+    <div class="logo-container">
+      <div class="logo-badge">LP</div>
+      <div class="logo-text">Learner-Pro</div>
+    </div>
+    <nav>
+      <a href="#">Home</a>
+    </nav>
+  </header>
+
+  <div class="container">
+    
+    <!-- Presentación del Proyecto -->
+    <div class="hero-card">
+      <div class="badge-pymes">FERIA DE PYMES - EDUCACIÓN PRIMARIA</div>
+      <h1>Math Battle en <span>Learner-Pro</span></h1>
+      <div class="sub-institution">Instituto Técnico Industrial Laureano Gómez Castro</div>
+      
+      <div class="authors-box">
+        <div>Estudiante 1: <strong>Diego Fernando Serna Chaverra</strong></div>
+        <div>Estudiante 2: <strong>Juan Sebastián Díaz Maza</strong></div>
+      </div>
+
+      <p style="color: var(--text-muted); max-width: 700px; margin: 0 auto;">
+        Plataforma educativa orientada a potenciar el cálculo mental en estudiantes de primaria mediante partidas multijugador cara a cara. Escanea el código QR oficial o haz clic en el botón para activar el juego.
+      </p>
+    </div>
+
+    <!-- Sección QR cargando la imagen qrjuego.png -->
+    <div class="qr-section">
+      <div class="qr-title">⚡ Código QR de Acceso Directo</div>
+      
+      <div class="qr-img-wrapper">
+        <!-- Imagen QR local -->
+        <img src="qrjuego.png" alt="Código QR Math Battle">
+        <div class="scan-line"></div>
+      </div>
+
+      <button class="btn-scan" onclick="unlockGame()">¡ESCANEAR Y JUGAR!</button>
+    </div>
+
+    <!-- Contenedor del Juego Math Battle -->
+    <div class="game-section" id="gameSection">
+      <h2 style="font-family: 'Fredoka', sans-serif; color: var(--accent-yellow); margin-bottom: 1rem;">
+        ⚡ Math Battle - Modo 2 Jugadores
+      </h2>
+
+      <div class="split-screen">
+        
+        <!-- JUGADOR 2 (Invertido a 180° para mesa/tablet) -->
+        <div class="player-area player-2">
+          <div class="player-header">
+            <span style="color: var(--accent-cyan); font-weight: bold;">J2 - Estudiante 2</span>
+            <span style="color: var(--accent-yellow);" id="score2">⭐ 0 pts</span>
+          </div>
+          <div class="math-expression" id="expr2">35 + 3 = ?</div>
+          <div class="answers-grid">
+            <button class="btn-ans" onclick="checkAnswer(2, 27)">27</button>
+            <button class="btn-ans" onclick="checkAnswer(2, 38)">38</button>
+            <button class="btn-ans" onclick="checkAnswer(2, 46)">46</button>
+            <button class="btn-ans" onclick="checkAnswer(2, 43)">43</button>
+          </div>
+        </div>
+
+        <!-- JUGADOR 1 (Normal) -->
+        <div class="player-area player-1">
+          <div class="player-header">
+            <span style="color: var(--accent-pink); font-weight: bold;">J1 - Estudiante 1</span>
+            <span style="color: var(--accent-yellow);" id="score1">⭐ 0 pts</span>
+          </div>
+          <div class="math-expression" id="expr1">35 + 3 = ?</div>
+          <div class="answers-grid">
+            <button class="btn-ans" onclick="checkAnswer(1, 27)">27</button>
+            <button class="btn-ans" onclick="checkAnswer(1, 38)">38</button>
+            <button class="btn-ans" onclick="checkAnswer(1, 46)">46</button>
+            <button class="btn-ans" onclick="checkAnswer(1, 43)">43</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+
+  <footer>
+    Learner-Pro &copy; 2026 - Instituto Técnico Industrial Laureano Gómez Castro
+  </footer>
+
+  <script>
+    // Función para desbloquear la sección interactiva del juego Math Battle
+    function unlockGame() {
+      const gameSec = document.getElementById('gameSection');
+      gameSec.classList.add('active');
+      gameSec.scrollIntoView({ behavior: 'smooth' });
+    }
+
+    // Lógica básica del juego
+    let p1Score = 0;
+    let p2Score = 0;
+
+    function checkAnswer(player, val) {
+      if (val === 38) {
+        if (player === 1) {
+          p1Score += 100;
+          document.getElementById('score1').innerText = `⭐ ${p1Score} pts`;
+          alert('¡Jugador 1 acertó!');
+        } else {
+          p2Score += 100;
+          document.getElementById('score2').innerText = `⭐ ${p2Score} pts`;
+          alert('¡Jugador 2 acertó!');
+        }
+      } else {
+        alert('Respuesta incorrecta, intenta de nuevo.');
+      }
+    }
+  </script>
+</body>
+</html>
